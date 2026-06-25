@@ -35,6 +35,12 @@ jobs:
           name: MasterStreamer-macOS-AU
           path: build/MasterStreamer_artefacts/Release/AU/MasterStreamer.component
 
+      - name: Upload Standalone App Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MasterStreamer-macOS-Standalone
+          path: build/MasterStreamer_artefacts/Release/Standalone/MasterStreamer.app
+
   build-windows:
     name: Build Windows Plugins
     runs-on: windows-latest
@@ -56,3 +62,9 @@ jobs:
         with:
           name: MasterStreamer-Windows-VST3
           path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3
+
+      - name: Upload EXE Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MasterStreamer-Windows-EXE
+          path: build/MasterStreamer_artefacts/Release/Standalone/MasterStreamer.exe

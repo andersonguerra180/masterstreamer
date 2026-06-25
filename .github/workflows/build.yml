@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -24,19 +24,19 @@ jobs:
         run: cmake --build build --config Release
 
       - name: Upload VST3 Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MasterStreamer-macOS-VST3
           path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3
 
       - name: Upload AU Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MasterStreamer-macOS-AU
           path: build/MasterStreamer_artefacts/Release/AU/MasterStreamer.component
 
       - name: Upload Standalone App Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MasterStreamer-macOS-Standalone
           path: build/MasterStreamer_artefacts/Release/Standalone/MasterStreamer.app
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -58,13 +58,13 @@ jobs:
         run: cmake --build build --config Release
 
       - name: Upload VST3 Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MasterStreamer-Windows-VST3
           path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3
 
       - name: Upload EXE Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MasterStreamer-Windows-EXE
           path: build/MasterStreamer_artefacts/Release/Standalone/MasterStreamer.exe

@@ -1,0 +1,58 @@
+name: Build JUCE Plugins
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-mac:
+    name: Build macOS Plugins
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Plugins
+        run: cmake --build build --config Release
+
+      - name: Upload VST3 Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MasterStreamer-macOS-VST3
+          path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3
+
+      - name: Upload AU Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MasterStreamer-macOS-AU
+          path: build/MasterStreamer_artefacts/Release/AU/MasterStreamer.component
+
+  build-windows:
+    name: Build Windows Plugins
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Plugins
+        run: cmake --build build --config Release
+
+      - name: Upload VST3 Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MasterStreamer-Windows-VST3
+          path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3

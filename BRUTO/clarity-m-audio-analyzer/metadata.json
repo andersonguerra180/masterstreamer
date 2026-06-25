@@ -1,0 +1,6 @@
+{
+  "name": "Bunker Analog Mastering Meter",
+  "description": "Professional real-time audio analyzer and mastering meter with high-resolution metering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

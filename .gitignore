@@ -1,0 +1,22 @@
+# CMake build directories
+/build/
+/cmake-build-debug/
+/cmake-build-release/
+/out/
+CMakeUserPresets.json
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# JUCE / Build artifacts
+/MasterStreamer_artefacts/
+/JUCE/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.user
+*.suo
+*.sln
+*.xcodeproj

@@ -275,6 +275,15 @@ void MasterStreamerAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer
 
             state.fps = fps;
 
+            state.bpm = position->getBpm().orFallback(120.0);
+            state.ppqPosition = position->getPpqPosition().orFallback(0.0);
+
+            if (auto ts = position->getTimeSignature())
+            {
+                state.timeSigNum = ts->numerator;
+                state.timeSigDen = ts->denominator;
+            }
+
             if (state.isPlaying)
             {
                 double timeInSeconds = position->getTimeInSeconds().orFallback(0.0);

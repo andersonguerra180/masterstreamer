@@ -4,6 +4,10 @@ project(MasterStreamer VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# MSVC Static Runtime Link
+cmake_policy(SET CMP0091 NEW)
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
 if(NOT DEFINED JUCE_PATH)
     if(EXISTS "/Applications/JUCE")
         set(JUCE_PATH "/Applications/JUCE")
@@ -36,7 +40,7 @@ juce_add_plugin(MasterStreamer
     PLUGIN_MANUFACTURER_CODE Zomb
     PLUGIN_CODE Mstr
 
-    FORMATS VST3 AU Standalone
+    FORMATS VST3
 
     PRODUCT_NAME "MasterStreamer"
 )
@@ -71,9 +75,9 @@ target_compile_definitions(MasterStreamer PRIVATE
 
     JucePlugin_Build_VST=0
     JucePlugin_Build_VST3=1
-    JucePlugin_Build_AU=1
+    JucePlugin_Build_AU=0
     JucePlugin_Build_AUv3=0
     JucePlugin_Build_AAX=0
-    JucePlugin_Build_Standalone=1
+    JucePlugin_Build_Standalone=0
     JucePlugin_Build_Unity=0
 )

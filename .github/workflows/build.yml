@@ -7,40 +7,6 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build-mac:
-    name: Build macOS Plugins
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Configure CMake
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
-
-      - name: Build Plugins
-        run: cmake --build build --config Release
-
-      - name: Upload VST3 Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MasterStreamer-macOS-VST3
-          path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3
-
-      - name: Upload AU Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MasterStreamer-macOS-AU
-          path: build/MasterStreamer_artefacts/Release/AU/MasterStreamer.component
-
-      - name: Upload Standalone App Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MasterStreamer-macOS-Standalone
-          path: build/MasterStreamer_artefacts/Release/Standalone/MasterStreamer.app
-
   build-windows:
     name: Build Windows Plugins
     runs-on: windows-latest
@@ -61,10 +27,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MasterStreamer-Windows-VST3
-          path: build/MasterStreamer_artefacts/Release/VST3/MasterStreamer.vst3
-
-      - name: Upload EXE Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MasterStreamer-Windows-EXE
-          path: build/MasterStreamer_artefacts/Release/Standalone/MasterStreamer.exe
+          path: build/MasterStreamer_artefacts/Release/VST3/

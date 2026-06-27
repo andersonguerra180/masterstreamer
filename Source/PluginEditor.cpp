@@ -260,6 +260,11 @@ void MasterStreamerAudioProcessorEditor::paint(juce::Graphics& g)
         int logoY = 8;
         g.drawImageWithin(logo, logoX, logoY, logoW, logoH, juce::RectanglePlacement::centred);
     }
+
+    // Draw version string in bottom-left corner
+    g.setColour(juce::Colour(0xFF005500));
+    g.setFont(juce::Font (juce::FontOptions (9.0f)));
+    g.drawText("BKRBPM v1.1", 15, getHeight() - 20, 150, 12, juce::Justification::left);
 }
 
 void MasterStreamerAudioProcessorEditor::resized()

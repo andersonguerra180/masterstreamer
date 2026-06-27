@@ -40,7 +40,7 @@ juce_add_plugin(MasterStreamer
     PLUGIN_MANUFACTURER_CODE Zomb
     PLUGIN_CODE Mstr
 
-    FORMATS VST3
+    FORMATS VST3 AU
 
     PRODUCT_NAME "MasterStreamer"
 )
@@ -75,7 +75,7 @@ target_compile_definitions(MasterStreamer PRIVATE
 
     JucePlugin_Build_VST=0
     JucePlugin_Build_VST3=1
-    JucePlugin_Build_AU=0
+    JucePlugin_Build_AU=1
     JucePlugin_Build_AUv3=0
     JucePlugin_Build_AAX=0
     JucePlugin_Build_Standalone=0

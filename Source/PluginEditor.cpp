@@ -7,7 +7,7 @@
 
 InfoPopupComponent::InfoPopupComponent()
 {
-    logoImage = juce::ImageCache::getFromMemory(BinaryData::logobkr_png, BinaryData::logobkr_pngSize);
+    logoImage = juce::ImageCache::getFromMemory(BinaryData::busbridge_jpg, BinaryData::busbridge_jpgSize);
 }
 
 void InfoPopupComponent::paint(juce::Graphics& g)
@@ -16,8 +16,8 @@ void InfoPopupComponent::paint(juce::Graphics& g)
     g.fillAll(juce::Colours::black.withAlpha(0.88f));
 
     // 2. Centred dialog box
-    int boxW = 360;
-    int boxH = 260;
+    int boxW = 420;
+    int boxH = 280;
     int boxX = (getWidth()  - boxW) / 2;
     int boxY = (getHeight() - boxH) / 2;
 
@@ -30,42 +30,50 @@ void InfoPopupComponent::paint(juce::Graphics& g)
     g.setColour(juce::Colour(0xFF39FF14));
     g.strokePath(borderPath, juce::PathStrokeType(2.0f));
 
-    // 3. BKR Logo
+    // 3. Bus Bridge image as banner (top portion of popup)
     if (logoImage.isValid())
     {
-        int imgW = 140;
-        int imgH = (logoImage.getHeight() * imgW) / logoImage.getWidth();
-        int imgX = boxX + (boxW - imgW) / 2;
-        int imgY = boxY + 14;
-        g.drawImageWithin(logoImage, imgX, imgY, imgW, imgH, juce::RectanglePlacement::centred);
+        int imgH = 120;
+        juce::Path imgClip;
+        imgClip.addRoundedRectangle(boxX + 2, boxY + 2, boxW - 4, imgH, 9.0f);
+        g.saveState();
+        g.reduceClipRegion(imgClip);
+        g.drawImageWithin(logoImage, boxX + 2, boxY + 2, boxW - 4, imgH,
+                          juce::RectanglePlacement::fillDestination);
+        g.restoreState();
+        // subtle dark gradient overlay so text below is readable
+        juce::ColourGradient fade (juce::Colours::transparentBlack, (float)boxX, (float)(boxY + 80),
+                                   juce::Colour(0xFF0A140A),            (float)boxX, (float)(boxY + imgH), false);
+        g.setGradientFill(fade);
+        g.fillRect(boxX + 2, boxY + 80, boxW - 4, imgH - 78);
     }
 
-    // 4. Product title
+    // 4. Product title (below image at ~126px)
     g.setColour(juce::Colour(0xFFE5FFE8));
     g.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(), 15.0f, juce::Font::bold));
-    g.drawText("BKR Bus Bridge", boxX, boxY + 90, boxW, 22, juce::Justification::centred);
+    g.drawText("BKR Bus Bridge", boxX, boxY + 126, boxW, 22, juce::Justification::centred);
 
     // 5. Version
     g.setColour(juce::Colour(0xFF39FF14));
     g.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(), 11.0f, juce::Font::plain));
-    g.drawText("v1.1", boxX, boxY + 112, boxW, 16, juce::Justification::centred);
+    g.drawText("v1.1", boxX, boxY + 148, boxW, 16, juce::Justification::centred);
 
     // 6. Divider
     g.setColour(juce::Colour(0xFF39FF14).withAlpha(0.35f));
-    g.drawLine((float)(boxX + 20), (float)(boxY + 134), (float)(boxX + boxW - 20), (float)(boxY + 134), 1.0f);
+    g.drawLine((float)(boxX + 20), (float)(boxY + 170), (float)(boxX + boxW - 20), (float)(boxY + 170), 1.0f);
 
     // 7. Creator / company
     g.setColour(juce::Colour(0xFF7CFF6B));
     g.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(), 11.0f, juce::Font::plain));
     g.drawFittedText("Designed by Anderson Guerra\nZombiePhone FX  |  Copyright \u00A9 2026",
-                      boxX + 10, boxY + 142, boxW - 20, 36,
+                      boxX + 10, boxY + 178, boxW - 20, 36,
                       juce::Justification::centred, 2);
 
     // 8. Info links
     g.setColour(juce::Colour(0xFF39FF14));
     g.setFont(juce::Font(juce::Font::getDefaultMonospacedFontName(), 10.0f, juce::Font::plain));
     g.drawFittedText("zombiephonefx.com  |  bkr.studio",
-                      boxX + 10, boxY + 186, boxW - 20, 16,
+                      boxX + 10, boxY + 222, boxW - 20, 16,
                       juce::Justification::centred, 1);
 
     // 9. Tap-to-dismiss hint

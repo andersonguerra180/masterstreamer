@@ -42,7 +42,7 @@ juce_add_plugin(MasterStreamer
 
     FORMATS VST3 AU
 
-    PRODUCT_NAME "MasterStreamer"
+    PRODUCT_NAME "BKR Bus Bridge"
 )
 
 juce_add_binary_data(MasterStreamer_Data

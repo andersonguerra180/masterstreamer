@@ -95,11 +95,11 @@ void InfoPopupComponent::mouseDown(const juce::MouseEvent&)
 static constexpr int W = 840;
 static constexpr int H = 480;
 
-// Panel geometry (left / right arch areas)
+// Panel geometry (above bridge in the sky)
 static constexpr int PW   = 220;   // panel width
 static constexpr int PH   = 168;   // panel height
 static constexpr int PADX = 18;    // horizontal margin from edge
-static constexpr int PY   = H - PH - 18; // top-y of both panels
+static constexpr int PY   = 18;    // top-y of both panels in the sky
 
 MasterStreamerAudioProcessorEditor::MasterStreamerAudioProcessorEditor(MasterStreamerAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p)
@@ -324,8 +324,8 @@ void MasterStreamerAudioProcessorEditor::paint(juce::Graphics& g)
 // ─────────────────────────────────────────────────────────────────────────────
 void MasterStreamerAudioProcessorEditor::resized()
 {
-    // Info button – top right
-    infoButton.setBounds(getWidth() - 28, 8, 20, 20);
+    // Info button – bottom right
+    infoButton.setBounds(getWidth() - 28, getHeight() - 28, 20, 20);
 
     // Popup covers full editor
     infoPopup.setBounds(getLocalBounds());

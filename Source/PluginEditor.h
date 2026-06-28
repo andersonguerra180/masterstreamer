@@ -39,6 +39,7 @@ private:
 
     // GUI UI Components - Timecode / Tally Stream Section
     juce::Label transportTitleLabel;
+    juce::Label transportSubtitleLabel;
     juce::TextEditor transportIpInputField;
     juce::Label transportIpLabel;
     juce::TextEditor transportPortInputField;

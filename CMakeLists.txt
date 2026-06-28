@@ -48,6 +48,8 @@ juce_add_plugin(MasterStreamer
 juce_add_binary_data(MasterStreamer_Data
     SOURCES
         Assets/logobkr.png
+        Assets/busbridge.jpg
+        Assets/zombie_icon.jpg
 )
 
 juce_generate_juce_header(MasterStreamer)
